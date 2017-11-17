@@ -1,0 +1,47 @@
+<!--pages/active-show/active-show.wxml-->
+<view class='mes-item'>
+  <image class='img' mode="{{item.mode}}" src='{{userInfo.avatarUrl}}'></image>
+  <view>
+    <view class='mes-title'>{{userInfo.nickName}}发布的群约</view>
+    <view class='mes-info'>
+      <view>{{info.created}}</view>
+    </view>
+  </view>
+</view>
+<view class='title'>
+  <text>{{info.title}}</text>
+</view>
+<view class='tips'>
+  <text>{{info.content}}</text>
+</view>
+<view class='img-container' wx:for="{{info.image_urls}}">
+  <image  src='{{item}}' class='img-show'></image>
+</view>
+<view class='line'></view>
+<view class='sign-num'>
+  <text>{{activeArrLength}}人已报名</text>
+</view>
+<view class='mes-item' wx:for="{{activeArr}}">
+  <image class='img' src='{{item.user_info.avatar}}'></image>
+  <view class='mes-item-mid'>
+    <view class='mes-title'>{{item.user_info.nickname}}</view>
+    <view class='mes-info'>
+      <view class='info-item'>
+        <image src='{{userIcon}}' class='icon'></image>
+        <text>{{item.user_info.nickname}}</text>
+      </view>
+      <view class='info-item'>
+        <image src='{{phoneIcon}}'class='icon'></image>
+        <text>{{item.extras.phone}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='time-msg'>
+    <text class='label-msg'>{{item.created}}</text>
+  </view>
+  
+</view>
+<view class="bottom-btn">
+    <navigator bindtap='toSign' hover-class="navigator-hover" class='bottom-btn-text'>立即报名</navigator>
+</view>
+

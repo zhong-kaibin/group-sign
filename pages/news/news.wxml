@@ -1,0 +1,19 @@
+<!--pages/news/news.wxml-->
+<!-- <view class='container' wx:for="{{arr}}"> -->
+<view >
+  <view class='item'>
+    <view class='top'>
+      <view class='news-title'>今天晚上去打球</view>
+      <view class='news-num'>33人</view>
+    </view>
+    <view class='bottom'>
+      <view class='news-info'>
+        <view class='label-time'>发起时间</view>
+        <view>11-07</view>
+        <view>18:20</view>
+      </view>
+      <view class=''>已报名</view>
+    </view>
+    <image src=''></image>
+  </view>
+</view>

@@ -1,0 +1,16 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding:0 0 192rpx 0 ;
+  box-sizing: border-box;
+/* background: #F2F2F2; */
+} 
+.txt-mid{
+  text-align: center
+}
+/* .clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden; } */
+.clearfix { float: left }

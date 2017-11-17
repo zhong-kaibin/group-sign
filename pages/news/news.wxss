@@ -1,0 +1,35 @@
+page{
+  background: #F5F5F5;
+}
+.item{
+  width: 100%;
+  height: 128rpx;
+  box-sizing: border-box;
+  border-top: 1rpx solid #F5F5F5;
+  padding:30rpx 30rpx 40rpx;
+  position: relative;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAOVBMVEUAAADraWnraWnraWnsdXX64ODvjIz4z8/zq6v76Oj1vr7ugYH2xsb0tLTxoaH98PD519fwl5f+9/cvsgi8AAAAA3RSTlMAgFHdmT33AAABDklEQVQ4y43SSXIDMQgFUJLPIDSr73/Y2O2qbGwjsWD1VCrg0w8+1C+915tslU9kcc4jncjkUnLhjdQOdWdYRiy5TuHkzTT+naHiGfXiYojkTMLoRZpzRSQ5lwKIcvPdPnWKXC5Pj9Tjiazg9SQzOJKCdg8myrMhkCYdtxy+oNsbaR1JFIJIFnE388Siss9SXvaQCbEU63nhIet2n3UMmQoAjTXcktb/80ucZLl7txcEfZU5AVitXay9Muir5AKuxpINUGH6LqEu3TNWVahTIBl5qBV7dqNIQidgCXoZKJY5lcFAAWgjLSVfGQDtZZ96w70EnnAv1xsMk0ynkk4lnUo6lXQq6VTSqaRTSafyDwOdDGXD9vp3AAAAAElFTkSuQmCC") no-repeat;
+  background-position:top right;
+  background-color: #ffffff;
+}
+.top{
+  display: flex;
+  justify-content:space-between;
+  padding: 0 30rpx;
+  font-size: 32rpx;
+  color: #333
+}
+.bottom{
+  display: flex;
+  justify-content:space-between;
+  padding: 0 30rpx;
+  font-size: 24rpx;
+  color: #cccccc;
+  margin-top: 14rpx;
+}
+.label-time{
+  padding-right: 20rpx;
+}
+.news-info{
+  display: flex;
+}

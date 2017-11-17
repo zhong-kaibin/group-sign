@@ -1,0 +1,59 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.6.4",
+	"appid": "wx76d763f3b317222d",
+	"projectname": "group-sign",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "active",
+					"pathName": "pages/add-active/active",
+					"query": "su_id=46"
+				},
+				{
+					"id": 1,
+					"name": "mes",
+					"pathName": "pages/messages/mes",
+					"query": "su_id=130"
+				},
+				{
+					"id": 2,
+					"name": "sign",
+					"pathName": "pages/edit-active/editMes",
+					"query": "su_id=185"
+				},
+				{
+					"id": 3,
+					"name": "news",
+					"pathName": "pages/news/news",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "news",
+					"pathName": "pages/active-show/active-show",
+					"query": ""
+				}
+			]
+		}
+	}
+}

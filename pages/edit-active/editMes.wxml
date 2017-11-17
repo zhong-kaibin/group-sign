@@ -1,0 +1,20 @@
+<!-- editMes -->
+<view class='tips'>
+  <image src="{{icon}}" mode="{{item.mode}}" class='icon'></image>
+  <text>发起人要求报名需要填写以下信息</text>
+</view>
+<view class='item' wx:if="{{realNameStatus==1}}">
+    <view class='label'>真实姓名</view>
+    <view class='label-msg'>
+        <input placeholder='请填写真实姓名' bindblur='nameComfirm'>袁红药 </input>
+    </view>  
+</view>
+<view class='item' wx:if="{{phoneStatus==1}}">
+    <view class='label'>手机号</view>
+    <view class='label-msg'>
+        <input placeholder='请填写手机号' bindblur='phoneComfirm'>袁红药 </input>
+    </view>   
+</view>
+<view class="bottom-btn">
+    <view class='bottom-btn-text' bindtap="submitSign" >立即报名</view>
+</view>

@@ -1,0 +1,62 @@
+<!--mes.wxml-->
+<view wx:if="{{loadStatus}}">
+  <view>
+    <view class='mes-item'>
+      <image class='img' mode="{{item.mode}}" src='{{userInfo.avatar}}'></image>
+      <view>
+        <view class='mes-title'>{{userInfo.nickname}}发布的群约</view>
+        <view class='mes-info'>
+          <view>{{info.created}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='title'>
+      <text>{{info.title}}</text>
+    </view>
+    <view style=" word-break: break-all" class='tips'>
+      {{info.content}}
+      <!-- <text   Columns="50" 
+TextMode="MultiLine" ></text> -->
+    </view>
+    <view class='img-container'>
+      <image wx:for="{{info.image_urls}}" src='{{item}}' class='img-show' data-src='{{item}}' bindtap='bigImage'></image>
+    </view>
+    <view class='line'></view>
+    <view class='sign-num'>
+      <text>{{activeArrLength}}人已报名</text>
+    </view>
+    <view class='mes-item' wx:for="{{activeArr}}">
+      <image class='img' src='{{item.user_info.avatar}}'></image>
+      <view class='mes-item-mid'>
+        <view class='mes-title'>{{item.user_info.nickname}}</view>
+        <view class='mes-info'>
+          <view class='info-item' wx:if="{{item.extras.real_name}}">
+            <!-- <image src='{{userIcon}}' class='icon'></image> -->
+            <text>姓名：{{item.extras.real_name}}</text>
+
+          </view>
+          <view class='info-phone' wx:if="{{item.extras.phone}}">
+            <!-- <image src='{{phoneIcon}}'class='icon'></image> -->
+            <text>手机：{{item.extras.phone}}</text>
+
+          </view>
+        </view>
+      </view>
+      <view class='time-msg'>
+        <text class='label-msg'>{{item.created}}</text>
+      </view>
+    </view>
+    <form bindsubmit="formSubmit" report-submit="true">
+      <view class="bottom-btn" wx:if="{{userInfo.is_created == 0}}">
+        <button bindtap='toSign' wx:if="{{is_joined==0}}" hover-class="navigator-hover" class='bottom-btn-text' formType="submit" id='signBtn'>立即报名</button>
+        <button wx:if="{{is_joined==1}}" open-type="share" formType="submit" class='bottom-btn-text invite' id='inviteBtn2'>邀请好友</button>
+      </view>
+      <view class="bottom-btn {{info.stoped == 1 && 'end'}}" wx:if="{{userInfo.is_created == 1}}">
+        <navigator open-type="redirect" url='/pages/add-active/active?su_id={{su_id}}' hover-class="button-hover" class=' bottom-btn-text edit'>
+          <button formType="submit" id='editBtn' class='bottom-btn-text editBtn'>编辑</button>
+        </navigator>
+        <button wx:if="{{stoped==0}}" open-type="share" formType="submit" class='bottom-btn-text invite' id='inviteBtn'>邀请好友</button>
+      </view>
+    </form>
+  </view>
+</view>

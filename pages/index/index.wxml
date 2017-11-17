@@ -1,0 +1,36 @@
+<!--index.wxml-->
+<view class="container" wx:if="{{!dataStatus}}">
+  <view>
+      <image style="width: 200px; height: 200px;" mode="{{item.mode}}" class='index-img' src="{{src}}"></image>
+  </view>
+  <view class="">
+      <text class="title">群组工具</text>
+  </view>
+  <view class="txt-content">
+      <text class="content">最快捷的报名接龙工具</text>
+  </view>
+  <view class="txt-content">
+      <text class="content">赶紧来体验吧!</text>
+  </view>
+</view>
+
+<view wx:if="{{dataStatus}}" wx:for="{{arr}}">
+  <view class='item {{item.is_created ==1 && "active"}}' catchtap='getActives' data-id="{{item.id}}" data-stoped="{{item.stoped}}">
+    <view class='top'>
+      <view class='news-title'>{{item.title}}</view>
+      <view class='news-num'>{{item.join_number}}人</view>
+    </view>
+    <view class='bottom'>
+      <view class='news-info'>
+        <view class='label-time'>发起时间 <text decode="{{true}}">&nbsp;&nbsp;</text>{{item.created}}</view>
+      </view>
+      <view class=''>{{item.stoped == 1 ? "已结束" :"已报名"}}</view>
+    </view>
+  </view>
+</view>
+<form bindsubmit="formSubmit" report-submit="true">
+    <view class="bottom-btn" report-submit="true">
+          <!-- <navigator url="/pages/add-active/active" hover-class="navigator-hover" class='bottom-btn-text'><button formType="submit" class='add-group' id='add-group'>新建群约</button></navigator> -->
+          <button formType="submit" class='add-group' id='add-group'>新建群约</button>
+    </view>
+</form>

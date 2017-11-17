@@ -1,0 +1,18 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/add-active/active",
+    "pages/messages/mes",
+    "pages/edit-active/editMes",
+    "pages/news/news",
+    "pages/active-show/active-show"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "群组工具",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh":true
+  }
+}

@@ -1,0 +1,45 @@
+/* pages/edit-active/editMes.wxss */
+.tips{
+  height: 80rpx; 
+  line-height: 80rpx; 
+  border-bottom: 1rpx solid #F5F5F5;
+  font-size: 26rpx;
+}
+.icon{
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 30rpx;
+  margin-right: 20rpx;
+}
+.label{
+  padding-left: 50rpx;
+  width: 160rpx;
+  font-size: 30rpx;
+  color: #333333;
+}
+.item{
+  height: 120rpx;
+  line-height: 120rpx;
+  display: flex;
+  border-bottom: 1rpx solid #F5F5F5;
+  align-items: center;
+}
+.label-msg {
+  font-size: 32rpx;
+  /* padding-top: 38rpx; */
+}
+.bottom-btn{
+  width:100%;
+  text-align:center;
+  /* border-top:1px solid #aaa; */
+  height:96rpx;
+  line-height:96rpx;
+  position:absolute;
+  bottom:0;
+  left: 0;
+  background: #17d27c;
+}
+.bottom-btn-text{
+  font-size: 34rpx;
+  color: #fff;
+}
