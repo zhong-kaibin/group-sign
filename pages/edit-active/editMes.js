@@ -1,4 +1,5 @@
 // pages/edit-active/editMes.js
+import urlObj from '../../utils/url.js'
 Page({
 
   /**
@@ -27,11 +28,15 @@ Page({
   getJSON:function () {
     var self = this;
     var su_id = this.data.su_id;
-    getApp().getLoginKey(function (key) {
+    getApp().getToken(function (token) {
       console.log(self.data.su_id,"这是id值 " )
       wx.request({
-        url: getApp().data.url + "/sign_up/detail?su_id=" + self.data.su_id + '&login_key=' + key,
+        url: getApp().data.url + "/sign_up/detail" + urlObj.url.params + "&su_id=" + self.data.su_id ,
         method: "GET",
+        header: {
+          'content-type': 'application/json',
+          'Authorization': 'AppletToken ' + getApp().token
+        },
         success: function (res) {
           console.log(res, "报名页面钟返回的活动信息")
           self.setData({
@@ -165,12 +170,13 @@ Page({
     formValid = nameChecked && phoneChecked;
     if (formValid){
       //填完信息后报名
-      getApp().getLoginKey(function (key) {
+      getApp().getToken(function (token) {
         wx.request({
-          url: getApp().data.url + "/sign_up/sign_up?login_key=" + key,
+          url: getApp().data.url + "/sign_up/sign_up" + urlObj.url.params,
           method: "POST",
           header: {
-            "Content-Type": "application/x-www-form-urlencoded"
+            "Content-Type": "application/x-www-form-urlencoded",
+            'Authorization': 'AppletToken ' + getApp().token
           },
           data: {
             su_id: self.data.su_id,

@@ -2,6 +2,7 @@
 //获取应用实例
 const app = getApp()
 import unit from '../../utils/util.js'
+import urlObj from '../../utils/url.js'
 Page({
   data: {
     motto: '群组工具最便捷的报名接龙工具',
@@ -58,10 +59,15 @@ Page({
       })
     }
     var self = this;
-    getApp().getLoginKey(function (key) {
+    getApp().getToken(function (token) {
       wx.request({
-        url: getApp().data.url + "/sign_up/index_list?login_key=" + key,
+        url: getApp().data.url + "/sign_up/index_list" + urlObj.url.params,
         method: "GET",
+        header: {
+          'content-type': 'application/json',
+          'Authorization': 'AppletToken ' + getApp().token
+        },
+        
         success: function (res) {
           wx.stopPullDownRefresh()
           self.data.arr = res.data.data
@@ -102,8 +108,12 @@ Page({
     })
     //请求活动详情
     wx.request({
-      url: getApp().data.url + "/sign_up/detail?su_id=" + su_id,
+      url: getApp().data.url + "/sign_up/detail" + urlObj.url.params + "&su_id=" + su_id ,
       method: "GET",
+      header: {
+        'content-type': 'application/json',
+        'Authorization': 'AppletToken ' + getApp().token
+      },
       data:{
         // su_id: su_id
       },
@@ -115,8 +125,7 @@ Page({
           wx.navigateTo({
             url: '../messages/mes?su_id=' + su_id + "&stoped=" + self.data.stoped,
             // 
-          });
-          
+          });        
         } else {       
         }
       }

@@ -1,5 +1,6 @@
 // pages/active/active.js
 var util = require('../../utils/util.js');  
+import urlObj from '../../utils/url.js'
 Page({
   /**
    * 页面的初始数据
@@ -38,6 +39,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //区别新增还是编辑
     var edit = options.su_id? true :false
     this.setData({
       edit: edit,
@@ -45,33 +47,33 @@ Page({
       stop_number:""
     });  
     var self = this;
-    
-    console.log(options.su_id,"options.su_id")
+    //编辑时候的处理
     if (options.su_id){
-      //getApp().su_id = options.su_id
       this.setData({
         su_id: options.su_id
       });
       wx.request({
-        url: getApp().data.url + "/sign_up/detail?su_id=" + options.su_id,
+        url: getApp().data.url + "/sign_up/detail" + urlObj.url.params +"&su_id=" + options.su_id ,
         method: "GET",
+        header: {
+          'content-type': 'application/json',
+          'Authorization': 'AppletToken ' + getApp().token
+        },
         success: function (res) {
           var data = res.data.data;
-          var switchStatus1 = data.auto_stop==0?false:true;
           var extraLen = data.require_extra.length > 0?true:false;
           var require_extra = data.require_extra;
          
           self.setData({
             switchStatus1: data.auto_stop == 0 ? false :true,
+            switchStatus2: data.with_extra == 0 ? false : true,
             title: data.title,
             content:data.content,
             image_urls: data.image_urls[0] == '' ? [] : data.image_urls,
-            switchStatus1: switchStatus1,
-            time: data.stop_datetime != '' ? data.stop_datetime : util.nextWeekTime() ,
-            // stop_number: data.stop_number != '' ? data.stop_number : 0,
+            // switchStatus1: switchStatus1,
+            time: data.stop_datetime != '' ? data.stop_datetime : util.nextWeekTime() ,//若时间没有返回值，则默认下一周
             stop_number: data.stop_number == 0 ? '': data.stop_number,
-            with_extra: data.with_extra,
-            switchStatus2: data.with_extra==0?false:true,
+            with_extra: data.with_extra,           
             imageSrcNum: data.image_urls.length,
             auto_stop: data.auto_stop
           })
@@ -112,7 +114,7 @@ Page({
         }
       })
     }
-    getApp().login_key
+    getApp().token
     
   },
 
@@ -299,7 +301,7 @@ Page({
     formValid = this.data.auto_stop == 1 ? this.stopNumComfirm1(this.data.stop_number) :true
     formValid =formValid && this.titleConfirm1() && this.contentComfirm1();
     if (formValid){
-      console.log('form发生了submit事件，携带数据为：', getApp().login_key)
+      console.log('form发生了submit事件，携带数据为：', getApp().token)
       var self = this;
       //根据报名附加信息的状态值来拼接该字段传个后台的值
       if (!self.data.switchStatus2){
@@ -330,10 +332,11 @@ Page({
       }     
       //发送数据给后台 
       wx.request({
-        url: getApp().data.url + '/sign_up/create?login_key=' + getApp().login_key,
+        url: getApp().data.url + '/sign_up/create' + urlObj.url.params,
         method: "POST",
         header: {
-          "Content-Type": "application/x-www-form-urlencoded"
+          "Content-Type": "application/x-www-form-urlencoded",
+          'Authorization': 'AppletToken ' + getApp().token
         },
         data: {
           // ...e.detail.value,
@@ -406,11 +409,13 @@ Page({
           with_extra: 1
         })
       }
+      //保存修改
       wx.request({
-        url: getApp().data.url + '/sign_up/modify?login_key=' + getApp().login_key,
+        url: getApp().data.url + '/sign_up/modify' + urlObj.url.params,
         method: "POST",
         header: {
-          "Content-Type": "application/x-www-form-urlencoded"
+          "Content-Type": "application/x-www-form-urlencoded",
+          'Authorization': 'AppletToken ' + getApp().token
         },
         data: {
           // ...e.detail.value,
@@ -521,7 +526,6 @@ Page({
   },
   chooseItem2: function (e) {
     if (this.data._num2 == 1) {
-      //this.data.require_extra[1] = "";
       this.setData({
         _num2: 0,
         _signAdd2: "",
@@ -547,13 +551,14 @@ Page({
       })
     } 
   },
-  formOver:function(){
+  formOver:function(){//结束报名
     var self =this;
     wx.request({
-      url: getApp().data.url + '/sign_up/stop?login_key=' + getApp().login_key,
+      url: getApp().data.url + '/sign_up/stop' + urlObj.url.params,
       method: "POST",
       header: {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
+        'Authorization': 'AppletToken ' + getApp().token      
       },
       data: {
         // ...e.detail.value,
@@ -575,13 +580,14 @@ Page({
       }
     })
   },
-  formDel:function(){
+  formDel:function(){//删除活动
     var self = this;
     wx.request({
-      url: getApp().data.url + '/sign_up/delete?login_key=' + getApp().login_key,
+      url: getApp().data.url + '/sign_up/delete' + urlObj.url.params,
       method: "POST",
       header: {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
+        'Authorization': 'AppletToken ' + getApp().token
       },
       data: {
         // ...e.detail.value,

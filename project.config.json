@@ -33,13 +33,13 @@
 					"id": 1,
 					"name": "mes",
 					"pathName": "pages/messages/mes",
-					"query": "su_id=130"
+					"query": "su_id=215"
 				},
 				{
 					"id": 2,
 					"name": "sign",
 					"pathName": "pages/edit-active/editMes",
-					"query": "su_id=185"
+					"query": "su_id=215"
 				},
 				{
 					"id": 3,
@@ -50,6 +50,12 @@
 				{
 					"id": 4,
 					"name": "news",
+					"pathName": "pages/active-show/active-show",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "active-show",
 					"pathName": "pages/active-show/active-show",
 					"query": ""
 				}

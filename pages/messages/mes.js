@@ -1,5 +1,6 @@
 // pages/messages/mes.js
 const app = getApp()
+import urlObj from '../../utils/url.js'
 Page({
   /**
    * 页面的初始数据
@@ -33,10 +34,14 @@ Page({
   getJSON: function () {
     var self = this;
     var su_id = this.data.su_id;
-    getApp().getLoginKey(function (key) {
+    getApp().getToken(function (token) {
       wx.request({
-        url: getApp().data.url + "/sign_up/detail?su_id=" + su_id + '&login_key=' + key,
+        url: getApp().data.url + "/sign_up/detail"+ urlObj.url.params+"&su_id=" + su_id,
         method: "GET",
+        header:{
+          'content-type': 'application/json',
+          'Authorization': 'AppletToken ' + getApp().token
+        },
         success: function (res) {
           if(res.data.code==0){
             self.setData({
@@ -62,8 +67,12 @@ Page({
       })
 
       wx.request({
-        url: getApp().data.url + "/sign_up/join_list?su_id=" + su_id + '&login_key=' + key,
+        url: getApp().data.url + "/sign_up/join_list" + urlObj.url.params +"&su_id=" + su_id ,
         method: "GET",
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          'Authorization': 'AppletToken' + getApp().token
+        },
         success: function (res) {
           if (res.data.code == 0){
             self.setData({
@@ -165,12 +174,13 @@ Page({
     }
     else{
         //不用填信息直接报名
-        getApp().getLoginKey(function (key) {
+        getApp().getToken(function (token) {
           wx.request({
-            url: getApp().data.url + "/sign_up/sign_up?login_key=" + key,
+            url: getApp().data.url + "/sign_up/sign_up" + urlObj.url.params,
             method: "POST",
             header: {
-              "Content-Type": "application/x-www-form-urlencoded"
+              "Content-Type": "application/x-www-form-urlencoded",
+              'Authorization': 'AppletToken ' + getApp().token
             },
             data: {
               su_id: getApp().su_id
@@ -195,9 +205,11 @@ Page({
       }      
   },
   bigImage:function(e){
+    var self =this;
     wx.previewImage({
       current: e.currentTarget.dataset.src, // 当前显示图片的http链接
-      urls: [e.currentTarget.dataset.src] // 需要预览的图片http链接列表
+      // urls: [e.currentTarget.dataset.src] // 需要预览的图片http链接列表
+      urls: self.data.info.image_urls // 需要预览的图片http链接列表
     })
   },
   onPullDownRefresh: function () {

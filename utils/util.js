@@ -26,13 +26,8 @@ function nextWeekTime(){
   var second = date.getSeconds();
   return [year, month, day].map(formatNumber).join('-') + ' ' 
 }
-// 方法的导出
-function a(){
-  console.log('a')
-}
 
 module.exports = {
   formatTime: formatTime,
-  nextWeekTime: nextWeekTime,
-  a: a
+  nextWeekTime: nextWeekTime
 } 
